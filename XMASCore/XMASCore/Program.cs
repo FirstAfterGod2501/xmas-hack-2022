@@ -1,3 +1,15 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
 
-Console.WriteLine("Hello, World!");
+namespace core
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            ScriptEngine engine = Python.CreateEngine();
+            engine.ExecuteFile("../../../../../Python/main.py");
+            Console.WriteLine("Hello, World!");
+        }
+    }
+}
