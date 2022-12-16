@@ -5,22 +5,20 @@ class Program
     public static Swarm swarm;
     static void Main()
     {
+        var data = InputJson.Read();
+        data.Drones[0].Move();
+        
         swarm = new Swarm(5);
         for (int i = 0; i < 5; i++)
         {
-            swarm.AddDrone(new Drone(new Point(0,1),1, 10));
+            swarm.AddDrone(new Drone(new Point(0,1),1, 100));
         }
 
-        new Thread(() => StartDrawing(swarm)).Start();
-
-        Operator @operator = new Operator(swarm);
+        new Thread(() => Drawing.Start(swarm, 300, 300)).Start();
+        Operator @operator = new Operator(new Point(0, 0),swarm);
         Thread.Sleep(1000);
-        @operator.MoveSwarmToPoint(new Point(50, 50));
+        @operator.MoveSwarmToPoint(new Point(160, 50));
     }
 
-    static void StartDrawing(Swarm swarm)
-    {
-        Drawing drawing = new(swarm, 300, 300);
-        drawing.Start();
-    }
+
 }

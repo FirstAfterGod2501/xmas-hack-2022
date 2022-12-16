@@ -1,9 +1,9 @@
 {
-  "GCS":{
+  "Base":{
     "x": 1,
     "y": 2
   },
-  "MS":{
+  "ServiceStation":{
     "x":2,
     "y":3
   },

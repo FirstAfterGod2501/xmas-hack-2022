@@ -21,7 +21,11 @@ public class Drawing
         
     }
 
-    public void Start() => Display();
+    public static void Start(Swarm swarm, uint width, uint height)
+    {
+        Drawing drawing = new(swarm, width, height);
+        drawing.Display();
+    }
     
 
     static void OnClose(object sender, EventArgs e)

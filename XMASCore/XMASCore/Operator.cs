@@ -3,9 +3,10 @@
 public class Operator
 {
     public Swarm Swarm { get; protected set; }
-
-    public Operator(Swarm swarm)
+    public Point Position { get; protected set; }
+    public Operator(Point position, Swarm swarm)
     {
+        Position = position;
         Swarm = swarm;
     }
 
