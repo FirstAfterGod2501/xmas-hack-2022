@@ -1,4 +1,20 @@
 {
+  "Base":
+  {
+    "x": 1,
+    "y": 2
+  },
+  "ServiceStation":
+  {
+    "x":2,
+    "y":3
+  },
+  "dataTransferSystem":
+  {
+    "range": 3500,
+    "throughput": 100,
+    "linearScaleFactor": 4.0
+  },
   "drones": [
     {
       "totalBatterySize": 200,
@@ -8,12 +24,6 @@
       "landingSpeed": 3,
       "weight": 7,
       "diameter": 4,
-      "dataTransferSystem":
-      {
-        "range": 3500,
-        "throughput": 100,
-        "linearScaleFactor": 4.0
-      },
       "payload": "lidar"
     },
     {
@@ -24,12 +34,7 @@
       "landingSpeed": 3,
       "weight": 7,
       "diameter": 4,
-      "dataTransferSystem":
-      {
-        "range": 3500,
-        "throughput": 100,
-        "linearScaleFactor": 4.0
-      }
+      "payload": "Spraying"
     },
     {
       "totalBatterySize": 200,
@@ -39,26 +44,7 @@
       "landingSpeed": 3,
       "weight": 7,
       "diameter": 4,
-      "dataTransferSystem":
-      {
-        "range": 3500,
-        "throughput": 100,
-        "linearScaleFactor": 4.0
-      }
-    },
-    {
-      "totalBatterySize": 200,
-      "currentBatterySize": 63,
-      "horizontalSpeed": 45,
-      "takeoffSpeed": 5,
-      "landingSpeed": 3,
-      "weight": 7,
-      "diameter": 4,
-      "dataTransferSystem": {
-        "range": 3500,
-        "throughput": 100,
-        "linearScaleFactor": 4.0
-      }
+      "payload": "HighDefinitionCamera"
     }
   ]
 }
