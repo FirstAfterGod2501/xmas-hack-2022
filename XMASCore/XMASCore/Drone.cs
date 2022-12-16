@@ -10,7 +10,7 @@ public class Drone
     public Direction Direction { get; set; }
     public Point Position { get; protected set; }
     public int CommunicationRange { get; set; }
-    
+
     public int Diameter { get; protected set; }
 
     public Drone(Point startPosition, int speed, int communicationRange)
@@ -25,12 +25,14 @@ public class Drone
     {
         if (update.id == Id)
         {
-            //do
+            Console.WriteLine("dest reached\n");
         }
-        else{
+        else
+        {
             if (update.jumpCount != update.maxJumpCounts)
             {
                 update.jumpCount++;
+                Console.WriteLine("jump\n");
                 List<Drone> drones = DataTransmissionSystem.GetDronesInRange(this, 200);
                 foreach (var drone in drones)
                 {
@@ -47,16 +49,13 @@ public class Drone
         CommunicationRange = drone.CommunicationRange;
         Direction = new Direction(0, 0);
     }
-
-
-    public void Move()
+    
+    public async void Move()
     {
-        DataTransmissionSystem.UpdateInformationAboutDrone(this);
         Position = new Point(Position.X + Direction.DeltaX * Speed, Position.Y + Direction.DeltaY * Speed);
         Direction = new Direction(0, 0);
+        await Task.Run(() => DataTransmissionSystem.UpdateInformationAboutDrone(this));
     }
-
-    
 }
 
 public class Master : Drone

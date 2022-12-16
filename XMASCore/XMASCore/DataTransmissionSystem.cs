@@ -24,10 +24,8 @@ public class DataTransmissionSystem
         Drones.Add(drone);
     }
     
-    DataTransmissionSystem(int range, int throughput, double linearThroughputDegradationFactor)
+    DataTransmissionSystem(int range)
     {
         Range = range;
-        throughput = throughput;
-        linearThroughputDegradationFactor = linearThroughputDegradationFactor;
     }
 }
