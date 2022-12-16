@@ -17,9 +17,27 @@ public class Drone
         Direction = new Direction(0, 0);
     }
 
+    protected Drone(Drone drone)
+    {
+        Position = drone.Position;
+        Speed = drone.Speed;
+        CommunicationRange = drone.CommunicationRange;
+        Direction = new Direction(0, 0);
+    }
+
+
     public void Move()
     {
         Position = new Point(Position.X + Direction.DeltaX * Speed, Position.Y + Direction.DeltaY * Speed);
     }
 
+    
+}
+
+public class Master : Drone
+{
+    public Master(Drone drone) : base(drone:drone)
+    {
+        
+    }
 }
