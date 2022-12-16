@@ -11,17 +11,29 @@
     {
       "Payload": "Lidar",
       "Speed":1,
-      "battery":30
+      "MaxBattary": 50,
+      "battery": 30,
+      "Diameter": 2,
+      "resource" : 100,
+      "weight": 10
     },
     {
       "Payload": "Spraying",
       "Speed":1,
-      "battery":30
+      "MaxBattary": 50,
+      "battery": 30,
+      "Diameter": 2,
+      "resource" : 100,
+      "weight": 10
     },
     {
       "Payload": "HighDefinitionCamera",
       "Speed":1,
-      "battery":30
+      "MaxBattary": 50,
+      "battery": 30,
+      "Diameter": 2,
+      "resource" : 100,
+      "weight": 10
     }
   ]
 }
