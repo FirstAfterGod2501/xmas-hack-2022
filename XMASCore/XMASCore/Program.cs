@@ -12,10 +12,12 @@ class Program
         {
             swarm.AddDrone(new Drone(new Point(0,1),data.Drones[i]));
         }
-        new Thread(() => Drawing.Start(swarm, 300, 300)).Start();
+
+        string[] imgs = new[] { "Fields/img.png" };
+        new Thread(() => Drawing.Start(swarm, imgs, 300, 300)).Start();
         Operator @operator = new Operator(new Point(0, 0),swarm);
         Thread.Sleep(1000);
         @operator.suka();
-        //@operator.MoveSwarmToPoint(new Point(160, 50));
+        @operator.MoveSwarmToPoint(new Point(160, 50));
     }
 }

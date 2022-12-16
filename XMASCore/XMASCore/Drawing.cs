@@ -26,9 +26,9 @@ public class Drawing
         }
     }
 
-    public static void Start(Swarm swarm, uint width, uint height)
+    public static void Start(Swarm swarm, string[] imageFilePaths, uint width, uint height)
     {
-        Drawing drawing = new(swarm, width, height);
+        Drawing drawing = new(swarm, imageFilePaths, width, height);
         drawing.Display();
     }
     
