@@ -3,7 +3,7 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["XMASCore/XMASCore.csproj", "XMASCore/"]
+COPY ["XMASCore.csproj", "XMASCore/"]
 RUN dotnet restore "XMASCore/XMASCore.csproj"
 COPY . .
 WORKDIR "/src/XMASCore"

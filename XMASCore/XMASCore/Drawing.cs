@@ -14,13 +14,15 @@ public class Drawing
     {
         Swarm = swarm;
         Window = new RenderWindow(new VideoMode(width, height), "Title");
-        BackgroundImage = new Sprite(new Texture(new Image("Fields/img.png")));
+        Window.SetVerticalSyncEnabled(true);
+        Image image = new Image("Fields/img.png");
+        BackgroundImage = new Sprite(new Texture(image));
+        BackgroundImage.Scale = new Vector2f((float)width / image.Size.X, (float)height / image.Size.Y);
     }
 
     public void Start()
     {
-        Thread drawingThread = new Thread(Display);
-        drawingThread.Start();
+        Display();
     }
 
     static void OnClose(object sender, EventArgs e)
@@ -31,10 +33,10 @@ public class Drawing
 
     public void Display()
     {
+        Window.Closed += OnClose;
         while (Window.IsOpen)
         {
-            Window.Closed += new EventHandler(OnClose);
-            
+            Window.DispatchEvents();
             Window.Clear();
             Window.Draw(BackgroundImage);
             foreach (var drone in Swarm.Drones)
@@ -47,7 +49,7 @@ public class Drawing
 
     public void DrawDrone(Drone drone)
     {
-        CircleShape dot = new CircleShape(5);
+        CircleShape dot = new CircleShape(3);
         dot.FillColor = Color.Red;
         dot.Position = new Vector2f(drone.Position.X, drone.Position.Y);
         Window.Draw(dot);
