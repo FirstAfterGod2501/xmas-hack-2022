@@ -2,7 +2,6 @@ namespace XMASCore;
 using SFML.Window;
 using SFML.Graphics;
 using SFML.System;
-using System.Threading;
 
 public class Drawing
 {
