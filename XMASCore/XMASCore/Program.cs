@@ -9,7 +9,7 @@ class Program
         {
             swarm.AddDrone(new Drone(new Point(0,i),1, 10));
         }
-
+        Drawing drawing = new(swarm, 300, 300);
         Console.WriteLine();
     }
 }

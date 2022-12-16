@@ -2,23 +2,46 @@ namespace XMASCore;
 using SFML.Window;
 using SFML.Graphics;
 using SFML.System;
+using System.Threading;
 
 public class Drawing
 {
     private RenderWindow Window;
     private Sprite BackgroundImage;
+    private Swarm Swarm;
 
-    public Drawing(uint width, uint height)
+    public Drawing(Swarm swarm, uint width, uint height)
     {
+        Swarm = swarm;
         Window = new RenderWindow(new VideoMode(width, height), "Title");
         BackgroundImage = new Sprite(new Texture(new Image("Fields/img.png")));
     }
 
+    public void Start()
+    {
+        Thread drawingThread = new Thread(Display);
+        drawingThread.Start();
+    }
+
+    static void OnClose(object sender, EventArgs e)
+    {
+        RenderWindow win = (RenderWindow)sender;
+        win.Close();
+    }
+
     public void Display()
     {
-        while (true)
+        while (Window.IsOpen)
         {
+            Window.Closed += new EventHandler(OnClose);
             
+            Window.Clear();
+            Window.Draw(BackgroundImage);
+            foreach (var drone in Swarm.Drones)
+            {
+                DrawDrone(drone);
+            }
+            Window.Display();
         }
     }
 
