@@ -10,7 +10,7 @@ class Program
         swarm = new Swarm(data.Drones.Count);
         for (int i = 0; i < data.Drones.Count; i++)
         {
-            swarm.AddDrone(new Drone(new Point(0,1),data.Drones[i]));
+            swarm.AddDrone(new Drone(new Point(0,1),data.Drones[i],i));
         }
 
         string[] imgs = new[] { "Fields/img.png" };

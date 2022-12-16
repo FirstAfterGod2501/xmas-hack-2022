@@ -14,7 +14,7 @@ public class DataTransmissionSystem
 
     public static List<Drone> GetDronesInRange(Drone drone, int range)
     {
-        return new List<Drone>(Drones.Where(x => CalculatTool.PointDistance(x.Position, drone.Position) < Range));
+        return Drones.Where(x => CalculatTool.PointDistance(x.Position, drone.Position) < Range).ToList();
     }
 
     public static void Registration(Drone drone)
@@ -24,7 +24,19 @@ public class DataTransmissionSystem
     
     public static void UpdateInformationAboutDrone(Drone drone)
     {
-        Drones.Remove(Drones.FirstOrDefault(x=>x.Id == drone.Id));
+        var droneToDelete = Drones.FirstOrDefault(x => x.Id == drone.Id);
+        if (droneToDelete != null)
+        {
+            try
+            {
+                Drones.Remove(droneToDelete);
+            }
+            catch (Exception ex)
+            {
+                //похуй
+            }
+        }
+
         Drones.Add(drone);
     }
     

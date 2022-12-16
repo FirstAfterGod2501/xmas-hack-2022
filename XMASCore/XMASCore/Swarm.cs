@@ -23,7 +23,7 @@ public class Swarm
         }
         if (Master == null)
         {
-            Master = new Master(drone);
+            Master = new Master(drone,drone.Id);
             Drones[DroneCount] = Master;
             Drones[DroneCount].Id = DroneCount;
             ++DroneCount;

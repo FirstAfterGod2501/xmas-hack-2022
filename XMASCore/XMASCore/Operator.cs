@@ -33,9 +33,10 @@ public class Operator
             Thread.Sleep(50);
         }
     }
-    //delete this shit
-    public void suka()
+    
+    public async void suka()
     {
-        Swarm.Master.moveDude(Swarm.Slaves[1].Id);
+        new Thread(() => Swarm.Master.moveDude(Swarm.Slaves[1].Id, new Point(2,2))).Start();
+        new Thread(() => Swarm.Master.moveDude(Swarm.Slaves[0].Id, new Point(4,2))).Start();
     }
 }

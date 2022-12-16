@@ -7,7 +7,8 @@ public enum Action
     returnInbase,
     work,
     sayCoords,
-    sayCoordsResponse
+    sayCoordsResponse,
+    isDestinationReached
 }
 
 public class Update
@@ -20,9 +21,12 @@ public class Update
         Y = y;
         this.maxJumpCounts = maxJumpCounts;
         FromId = fromId;
+        HashCode = DateTime.UnixEpoch.Second.GetHashCode();
     }
 
     public int FromId { get; set; }
+
+    public int HashCode { get; }
 
     public int Id { get; }
 

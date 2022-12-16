@@ -14,7 +14,11 @@ public class Drone
     public int Weight { get; set; }
     public int Diameter { get; set; }
     public Payload Payload { get; set; }
-    
+
+    public int c = 0;
+
+    private List<int> Hashes = new List<int>();
+
     public Dictionary<string, Payload> Payloads = new Dictionary<string, Payload>()
     {
         { "Lidar", new Lidar(1) },
@@ -26,17 +30,17 @@ public class Drone
         
     };
 
-    public async void UpdateHandler(Update update)
+    public void UpdateHandler(Update update)
     {
         if (update.Id == Id)
         {
             switch (update.Action)
             {
                 case Action.move:
-                    await Task.Run(() => MoveDrone(new Point(update.X,update.Y)));
+                    MoveDrone(new Point(update.X,update.Y),update.FromId);
                     break;
                 case Action.stay:
-                    await Task.Run(() => MoveDrone(new Point(update.X,update.Y)));
+                    MoveDrone(new Point(update.X,update.Y),update.FromId);
                     break;
                 case Action.work:
                     break;
@@ -47,8 +51,16 @@ public class Drone
                 case Action.sayCoords:
                     foreach (var drone in DataTransmissionSystem.GetDronesInRange(this,DataTransmissionSystem.Range))        
                     {
-                        drone.UpdateHandler(new Update(Id,update.FromId,Action.sayCoordsResponse,30,Position.X,Position.Y));
+                        drone.UpdateHandler(new Update(Id,update.FromId,Action.sayCoordsResponse,1,Position.X,Position.Y));
                     }
+                    break;
+                case Action.isDestinationReached:
+                    if (!Hashes.Contains(update.HashCode.GetHashCode()))
+                    {
+                        Console.WriteLine("id: " + update.FromId);
+                        Hashes.Add(update.HashCode.GetHashCode());
+                    }
+
                     break;
             }
         }
@@ -65,7 +77,7 @@ public class Drone
         }
     }
 
-    protected Drone(Drone drone)
+    protected Drone(Drone drone,int id)
     {
         Position = drone.Position;
         Speed = drone.Speed;TotalBatterySize = drone.TotalBatterySize;
@@ -76,11 +88,12 @@ public class Drone
         Weight  = drone.Weight;
         Diameter  = drone.Diameter;
         Payload = drone.Payload;
-        DataTransmissionSystem.Registration(this);
+        Id = id;
         Direction = new Direction(0, 0);
+        DataTransmissionSystem.Registration(this);
     }
 
-    public Drone(Point position, DroneData droneData)
+    public Drone(Point position, DroneData droneData,int id)
     {
         Position = position;
         TotalBatterySize = droneData.TotalBatterySize;
@@ -92,9 +105,11 @@ public class Drone
         Diameter  = droneData.Diameter;
         Payload = Payloads[droneData.Payload];
         Speed = HorizontalSpeed;
+        Id = id;
+        DataTransmissionSystem.Registration(this);
     }
 
-    private void MoveDrone(Point point)
+    private void MoveDrone(Point point,int mastersId)
     {
         while (!Position.Equals(point))
         {
@@ -102,6 +117,11 @@ public class Drone
                 DataTransmissionSystem.GetDronesInRange(this, DataTransmissionSystem.Range));
             Move();
             Thread.Sleep(50);
+        }
+
+        foreach (var drone in DataTransmissionSystem.GetDronesInRange(this,DataTransmissionSystem.Range))
+        {
+            drone.UpdateHandler(new Update(Id,mastersId,Action.isDestinationReached,1,Position.X,Position.Y));
         }
     }
 
@@ -115,16 +135,16 @@ public class Drone
 
 public class Master : Drone
 {
-    public Master(Drone drone) : base(drone:drone)
+    public Master(Drone drone,int id) : base(drone:drone,id:id)
     {
         
     }
 
-    public void moveDude(int dudeId)
+    public void moveDude(int dudeId,Point point)
     {
         foreach (var drones in DataTransmissionSystem.GetDronesInRange(this,DataTransmissionSystem.Range))
         {
-            drones.UpdateHandler(new Update(Id,dudeId,Action.move,30,500,50));
+            drones.UpdateHandler(new Update(Id,dudeId,Action.move,100,point.X,point.Y));
         }
     }
 }
