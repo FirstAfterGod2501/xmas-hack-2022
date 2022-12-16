@@ -2,3 +2,6 @@
 XMASCore/XMASCore/obj
 XMASCore/XMASCore/bin
 Python/.idea
+*/.DS_Store
+XMASCore/XMASCore/.DS_Store
+.DS_Store
