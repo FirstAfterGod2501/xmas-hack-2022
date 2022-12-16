@@ -8,9 +8,9 @@ public class Drawing
 {
     private RenderWindow Window;
     private Sprite BackgroundImage;
-    private Swarm Swarm;
+    private Swarm rSwarm;
 
-    public Drawing(Swarm swarm, uint width, uint height)
+    public Drawing(ref Swarm swarm, uint width, uint height)
     {
         Swarm = swarm;
         Window = new RenderWindow(new VideoMode(width, height), "Title");
@@ -41,7 +41,10 @@ public class Drawing
             Window.Draw(BackgroundImage);
             foreach (var drone in Swarm.Drones)
             {
-                DrawDrone(drone);
+                if (drone != null)
+                {
+                    DrawDrone(drone);
+                }
             }
             Window.Display();
         }

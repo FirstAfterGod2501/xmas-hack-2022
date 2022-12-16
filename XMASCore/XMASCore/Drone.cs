@@ -8,6 +8,8 @@ public class Drone
     public Direction Direction { get; set; }
     public Point Position { get; protected set; }
     public int CommunicationRange { get; protected set; }
+    
+    public int Diameter { get; protected set; }
 
     public Drone(Point startPosition, int speed, int communicationRange)
     {
@@ -29,6 +31,7 @@ public class Drone
     public void Move()
     {
         Position = new Point(Position.X + Direction.DeltaX * Speed, Position.Y + Direction.DeltaY * Speed);
+        Direction = new Direction(0, 0);
     }
 
     
