@@ -18,6 +18,6 @@ class Program
         Operator @operator = new Operator(new Point(0, 0),swarm);
         Thread.Sleep(1000);
         @operator.suka();
-        @operator.MoveSwarmToPoint(new Point(160, 50));
+        //@operator.MoveSwarmToPoint(new Point(160, 50));
     }
 }

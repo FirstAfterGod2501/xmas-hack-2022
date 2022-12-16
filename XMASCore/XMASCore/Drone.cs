@@ -122,9 +122,9 @@ public class Master : Drone
 
     public void moveDude(int dudeId)
     {
-        foreach (var drones in DataTransmissionSystem.GetDronesInRange(this,XMASCore.DataTransmissionSystem.Range))
+        foreach (var drones in DataTransmissionSystem.GetDronesInRange(this,DataTransmissionSystem.Range))
         {
-            drones.UpdateHandler(new Update(Id,dudeId,Action.move,30,50,50));
+            drones.UpdateHandler(new Update(Id,dudeId,Action.move,30,500,50));
         }
     }
 }
