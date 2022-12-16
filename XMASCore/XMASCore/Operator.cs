@@ -15,12 +15,21 @@ public class Operator
         drone.Move();
     }
 
+    private void MoveSlavesToMaster()
+    {
+        foreach (var slave in Swarm.Slaves)
+        {
+            MoveDrone(slave, Swarm.Master.Position);
+        }
+    }
+
     public void MoveSwarmToPoint(Point point)
     {
         while (Swarm.Master.Position!=point)
         {
             MoveDrone(Swarm.Master, point);
-            Thread.Sleep(100);
+            MoveSlavesToMaster();
+            Thread.Sleep(50);
         }
     }
 }

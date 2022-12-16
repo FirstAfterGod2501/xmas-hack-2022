@@ -2,18 +2,19 @@
 
 class Program
 {
+    public static Swarm swarm;
     static void Main()
     {
-        Swarm swarm = new Swarm(10);
-        for (int i = 0; i < 1; i++)
+        swarm = new Swarm(5);
+        for (int i = 0; i < 5; i++)
         {
-            swarm.AddDrone(new Drone(new Point(0,i),1, 10));
+            swarm.AddDrone(new Drone(new Point(0,1),1, 10));
         }
 
         new Thread(() => StartDrawing(swarm)).Start();
 
         Operator @operator = new Operator(swarm);
-        
+        Thread.Sleep(1000);
         @operator.MoveSwarmToPoint(new Point(50, 50));
     }
 

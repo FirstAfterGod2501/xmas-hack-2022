@@ -9,6 +9,13 @@ public class Point
     {
         X = x;
         Y = y;
+        
+        
+    }
+    public override bool Equals(object? obj)
+    {
+        Point point = (Point)obj;
+        return this.X == point.X && this.X == point.X;
     }
 }
 

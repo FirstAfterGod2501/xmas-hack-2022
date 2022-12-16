@@ -24,13 +24,16 @@ public class Swarm
         if (Master == null)
         {
             Master = new Master(drone);
+            Drones[DroneCount] = Master;
+            ++DroneCount;
         }
         else
         {
             Slaves[SlaveCount] = drone;
             ++SlaveCount;
+            Drones[DroneCount] = drone;
+            ++DroneCount;
         }
-        Drones[DroneCount] = drone;
-        ++DroneCount;
+        
     }
 }

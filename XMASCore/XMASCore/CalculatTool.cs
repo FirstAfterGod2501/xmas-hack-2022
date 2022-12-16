@@ -15,7 +15,7 @@ public class CalculatTool
             {
                 continue;
             }
-            if (swarmDrone.Position == point && swarmDrone != drone)
+            if (swarmDrone.Position.Equals(point) && swarmDrone != drone)
             {
                 return true;
             }

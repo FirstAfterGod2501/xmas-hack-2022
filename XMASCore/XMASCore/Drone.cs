@@ -7,7 +7,7 @@ public class Drone
     public int Speed { get; protected set; }
     public Direction Direction { get; set; }
     public Point Position { get; protected set; }
-    public int CommunicationRange { get; protected set; }
+    public int CommunicationRange { get; set; }
     
     public int Diameter { get; protected set; }
 

@@ -9,8 +9,7 @@ public class Drawing
     private RenderWindow Window;
     
     private Sprite BackgroundImage;
-    
-    public static Swarm Swarm;
+    private Swarm Swarm;
 
     public Drawing(Swarm swarm, uint width, uint height)
     {
@@ -20,6 +19,7 @@ public class Drawing
         Image image = new Image("Fields/img.png");
         BackgroundImage = new Sprite(new Texture(image));
         BackgroundImage.Scale = new Vector2f((float)width / image.Size.X, (float)height / image.Size.Y);
+        
     }
 
     public void Start() => Display();
@@ -49,7 +49,7 @@ public class Drawing
 
     public void DrawDrone(Drone drone)
     {
-        CircleShape dot = new CircleShape(3);
+        CircleShape dot = new CircleShape(2);
         dot.FillColor = Color.Red;
         dot.Position = new Vector2f(drone.Position.X, drone.Position.Y);
         Window.Draw(dot);
