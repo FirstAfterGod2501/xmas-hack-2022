@@ -6,12 +6,10 @@ class Program
     static void Main()
     {
         var data = InputJson.Read();
-        data.Drones[0].Move();
-        
-        swarm = new Swarm(5);
-        for (int i = 0; i < 5; i++)
+        swarm = new Swarm(data.Drones.Count);
+        for (int i = 0; i < data.Drones.Count; i++)
         {
-            swarm.AddDrone(new Drone(new Point(0,1),1, 100));
+            swarm.AddDrone(new Drone(new Point(0,1),data.Drones[i]));
         }
 
         new Thread(() => Drawing.Start(swarm, 300, 300)).Start();
@@ -19,6 +17,4 @@ class Program
         Thread.Sleep(1000);
         @operator.MoveSwarmToPoint(new Point(160, 50));
     }
-
-
 }

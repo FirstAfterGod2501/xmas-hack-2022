@@ -6,9 +6,9 @@ namespace XMASCore;
 
 public class DataTransmissionSystem
 {
-    public int Range { get; }
+    public static int Range { get; set; }
 
-    private List<Update> Updates;
+    private static List<Update> Updates;
 
     private static List<Drone> Drones;
 
@@ -24,7 +24,7 @@ public class DataTransmissionSystem
         Drones.Add(drone);
     }
     
-    DataTransmissionSystem(int range, int throughput, double linearThroughputDegradationFactor)
+    void SetDataTransmissionSystem(int range, int throughput, double linearThroughputDegradationFactor)
     {
         Range = range;
         throughput = throughput;

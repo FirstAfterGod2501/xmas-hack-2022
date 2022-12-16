@@ -25,6 +25,7 @@ public class Swarm
         {
             Master = new Master(drone);
             Drones[DroneCount] = Master;
+            Drones[DroneCount].Id = DroneCount;
             ++DroneCount;
         }
         else
