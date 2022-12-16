@@ -1,0 +1,27 @@
+{
+  "GCS":{
+    "x": 1,
+    "y": 2
+  },
+  "MS":{
+    "x":2,
+    "y":3
+  },
+  "drones":[
+    {
+      "Payload": "Lidar",
+      "Speed":1,
+      "battery":30
+    },
+    {
+      "Payload": "Spraying",
+      "Speed":1,
+      "battery":30
+    },
+    {
+      "Payload": "HighDefinitionCamera",
+      "Speed":1,
+      "battery":30
+    }
+  ]
+}
