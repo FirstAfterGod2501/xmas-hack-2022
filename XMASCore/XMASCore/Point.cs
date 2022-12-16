@@ -9,8 +9,6 @@ public class Point
     {
         X = x;
         Y = y;
-        
-        
     }
     public override bool Equals(object? obj)
     {
@@ -22,6 +20,7 @@ public class Point
 public class Direction
 {
     public int DeltaX { get; set; }
+    
     public int DeltaY { get; set; }
 
     public Direction(int deltaX, int deltaY)

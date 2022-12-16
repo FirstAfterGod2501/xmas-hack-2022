@@ -14,18 +14,23 @@ public class DataTransmissionSystem
 
     public static List<Drone> GetDronesInRange(Drone drone, int range)
     {
-        return new List<Drone>(Drones.Where(x => CalculatTool.PointDistance(x.Position, drone.Position) < range));
+        return new List<Drone>(Drones.Where(x => CalculatTool.PointDistance(x.Position, drone.Position) < Range));
+    }
+
+    public static void Registration(Drone drone)
+    {
+        Drones.Add(drone);
     }
     
-    //миллиард коллов
     public static void UpdateInformationAboutDrone(Drone drone)
     {
         Drones.Remove(Drones.FirstOrDefault(x=>x.Id == drone.Id));
         Drones.Add(drone);
     }
     
-    void SetDataTransmissionSystem(int range, int throughput, double linearThroughputDegradationFactor)
+    public static void SetDataTransmissionSystem(int range, int throughput, double linearThroughputDegradationFactor)
     {
+        Drones = new();
         Range = range;
         throughput = throughput;
         linearThroughputDegradationFactor = linearThroughputDegradationFactor;

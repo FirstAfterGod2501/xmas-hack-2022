@@ -2,8 +2,8 @@
 
 public class Operator
 {
-    public Swarm Swarm { get; protected set; }
-    public Point Position { get; protected set; }
+    public Swarm Swarm { get; }
+    public Point Position { get; }
     public Operator(Point position, Swarm swarm)
     {
         Position = position;
@@ -32,5 +32,10 @@ public class Operator
             MoveSlavesToMaster();
             Thread.Sleep(50);
         }
+    }
+    //delete this shit
+    public void suka()
+    {
+        Swarm.Master.moveDude(Swarm.Slaves[1].Id);
     }
 }

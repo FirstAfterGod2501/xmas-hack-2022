@@ -2,10 +2,10 @@
 
 public class Swarm
 {
-    public Drone[] Drones { get; protected set; }
+    public Drone[] Drones { get; }
     public int DroneCount { get; private set; }
     public Master Master { get; set; }
-    public Drone[] Slaves { get; protected set; }
+    public Drone[] Slaves { get; }
     public int SlaveCount { get; private set; }
 
     public Swarm(int lenght)

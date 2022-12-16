@@ -23,6 +23,23 @@ public class CalculatTool
 
         return false;
     }
+    
+    public static bool IsCoccupiedPoint(Point point,  List<Drone> drones, Drone drone)
+    {
+        foreach (var swarmDrone in drones)
+        {
+            if (swarmDrone == null)
+            {
+                continue;
+            }
+            if (swarmDrone.Position.Equals(point) && swarmDrone != drone)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public static Direction FineDestDirection(Drone drone, Point endPoint, Swarm swarm)
     {
@@ -35,6 +52,27 @@ public class CalculatTool
                 Point tempPosition = new Point(drone.Position.X + x*drone.Speed, drone.Position.Y + y*drone.Speed);
                 double tempDistance = CalculatTool.PointDistance(tempPosition, endPoint);
                 if (tempDistance < bestDistance && !IsCoccupiedPoint(tempPosition, swarm, drone))
+                {
+                    bestDistance = tempDistance;
+                    bestDirection = new Direction(x, y);
+                }
+            }
+        }
+
+        return bestDirection;
+    }
+    
+    public static Direction FineDestDirection(Drone drone, Point endPoint, List<Drone> drones)
+    {
+        double bestDistance = Double.MaxValue;
+        Direction bestDirection = new Direction(0, 0);
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                Point tempPosition = new Point(drone.Position.X + x*drone.Speed, drone.Position.Y + y*drone.Speed);
+                double tempDistance = CalculatTool.PointDistance(tempPosition, endPoint);
+                if (tempDistance < bestDistance && !IsCoccupiedPoint(tempPosition, drones, drone))
                 {
                     bestDistance = tempDistance;
                     bestDirection = new Direction(x, y);

@@ -14,7 +14,6 @@ public class Drone
     public int Weight { get; set; }
     public int Diameter { get; set; }
     public Payload Payload { get; set; }
-    public DataTransmissionSystem DataTransmissionSystem { get; protected set; }
     
     public Dictionary<string, Payload> Payloads = new Dictionary<string, Payload>()
     {
@@ -27,11 +26,31 @@ public class Drone
         
     };
 
-    public void UpdateHandler(Update update)
+    public async void UpdateHandler(Update update)
     {
-        if (update.id == Id)
+        if (update.Id == Id)
         {
-            //do
+            switch (update.Action)
+            {
+                case Action.move:
+                    await Task.Run(() => MoveDrone(new Point(update.X,update.Y)));
+                    break;
+                case Action.stay:
+                    await Task.Run(() => MoveDrone(new Point(update.X,update.Y)));
+                    break;
+                case Action.work:
+                    break;
+                case Action.returnInbase:
+                    break;
+                case Action.sayCoordsResponse:
+                    break;
+                case Action.sayCoords:
+                    foreach (var drone in DataTransmissionSystem.GetDronesInRange(this,DataTransmissionSystem.Range))        
+                    {
+                        drone.UpdateHandler(new Update(Id,update.FromId,Action.sayCoordsResponse,30,Position.X,Position.Y));
+                    }
+                    break;
+            }
         }
         else{
             if (update.jumpCount != update.maxJumpCounts)
@@ -57,8 +76,7 @@ public class Drone
         Weight  = drone.Weight;
         Diameter  = drone.Diameter;
         Payload = drone.Payload;
-
-        DataTransmissionSystem = new DataTransmissionSystem();
+        DataTransmissionSystem.Registration(this);
         Direction = new Direction(0, 0);
     }
 
@@ -74,18 +92,25 @@ public class Drone
         Diameter  = droneData.Diameter;
         Payload = Payloads[droneData.Payload];
         Speed = HorizontalSpeed;
-        DataTransmissionSystem = new DataTransmissionSystem();
     }
 
+    private void MoveDrone(Point point)
+    {
+        while (!Position.Equals(point))
+        {
+            Direction = CalculatTool.FineDestDirection(this, point,
+                DataTransmissionSystem.GetDronesInRange(this, DataTransmissionSystem.Range));
+            Move();
+            Thread.Sleep(50);
+        }
+    }
 
     public void Move()
     {
-       // DataTransmissionSystem.UpdateInformationAboutDrone(this);
+        DataTransmissionSystem.UpdateInformationAboutDrone(this);
         Position = new Point(Position.X + Direction.DeltaX * Speed, Position.Y + Direction.DeltaY * Speed);
         Direction = new Direction(0, 0);
     }
-
-    
 }
 
 public class Master : Drone
@@ -93,5 +118,13 @@ public class Master : Drone
     public Master(Drone drone) : base(drone:drone)
     {
         
+    }
+
+    public void moveDude(int dudeId)
+    {
+        foreach (var drones in DataTransmissionSystem.GetDronesInRange(this,XMASCore.DataTransmissionSystem.Range))
+        {
+            drones.UpdateHandler(new Update(Id,dudeId,Action.move,30,50,50));
+        }
     }
 }
