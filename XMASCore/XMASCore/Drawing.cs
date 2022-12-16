@@ -7,18 +7,23 @@ public class Drawing
 {
     private RenderWindow Window;
     
-    private Sprite BackgroundImage;
     private Swarm Swarm;
+    private List<Sprite> Images;
 
-    public Drawing(Swarm swarm, uint width, uint height)
+    public Drawing(Swarm swarm, string[] imageFilePaths, uint width, uint height)
     {
+        Images = new List<Sprite>();
         Swarm = swarm;
         Window = new RenderWindow(new VideoMode(width, height), "Title");
         Window.SetVerticalSyncEnabled(true);
-        Image image = new Image("Fields/img.png");
-        BackgroundImage = new Sprite(new Texture(image));
-        BackgroundImage.Scale = new Vector2f((float)width / image.Size.X, (float)height / image.Size.Y);
         
+        foreach (var path in imageFilePaths)
+        {
+            Image image = new Image(path);
+            Sprite sprite = new Sprite(new Texture(image));
+            sprite.Scale = new Vector2f((float)width / image.Size.X, (float)height / image.Size.Y);
+            Images.Add(sprite);
+        }
     }
 
     public static void Start(Swarm swarm, uint width, uint height)
@@ -41,7 +46,10 @@ public class Drawing
         {
             Window.DispatchEvents();
             Window.Clear();
-            Window.Draw(BackgroundImage);
+            foreach (var image in Images)
+            {
+                Window.Draw(image);
+            }
             foreach (var drone in Swarm.Drones)
             {
                 DrawDrone(drone);
