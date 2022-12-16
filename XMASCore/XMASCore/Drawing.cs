@@ -7,10 +7,12 @@ using System.Threading;
 public class Drawing
 {
     private RenderWindow Window;
+    
     private Sprite BackgroundImage;
-    private Swarm rSwarm;
+    
+    public static Swarm Swarm;
 
-    public Drawing(ref Swarm swarm, uint width, uint height)
+    public Drawing(Swarm swarm, uint width, uint height)
     {
         Swarm = swarm;
         Window = new RenderWindow(new VideoMode(width, height), "Title");
@@ -20,10 +22,8 @@ public class Drawing
         BackgroundImage.Scale = new Vector2f((float)width / image.Size.X, (float)height / image.Size.Y);
     }
 
-    public void Start()
-    {
-        Display();
-    }
+    public void Start() => Display();
+    
 
     static void OnClose(object sender, EventArgs e)
     {
@@ -41,10 +41,7 @@ public class Drawing
             Window.Draw(BackgroundImage);
             foreach (var drone in Swarm.Drones)
             {
-                if (drone != null)
-                {
-                    DrawDrone(drone);
-                }
+                DrawDrone(drone);
             }
             Window.Display();
         }

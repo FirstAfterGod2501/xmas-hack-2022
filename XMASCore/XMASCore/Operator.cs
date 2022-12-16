@@ -20,7 +20,6 @@ public class Operator
         while (Swarm.Master.Position!=point)
         {
             MoveDrone(Swarm.Master, point);
-            
             Thread.Sleep(100);
         }
     }

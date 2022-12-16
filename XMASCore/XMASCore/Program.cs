@@ -19,7 +19,7 @@ class Program
 
     static void StartDrawing(Swarm swarm)
     {
-        Drawing drawing = new(ref swarm, 300, 300);
+        Drawing drawing = new(swarm, 300, 300);
         drawing.Start();
     }
 }
