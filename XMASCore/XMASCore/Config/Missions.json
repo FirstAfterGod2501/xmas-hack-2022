@@ -1,0 +1,74 @@
+{
+  "Missions": 
+  [
+    {
+      "evaluationPeriod": "continuous",
+      "movementType": "pathFollow",
+      "missionContent": {
+        "coordinates": [100, 100],
+        "seeding": false,
+        "delivery": true,
+        "scanning3D": true,
+        "scanningUnderground": false,
+        "mapping": false,
+        "detection": false, 
+        "recognition": false,
+        "chasing": false
+      },
+      "missionTime": 20,
+      "cargo":
+      {
+        "weight": 5,
+        "size": 40
+      }
+    },
+    {
+      "evaluationPeriod": "periodic",
+      "movementType": "fullCoverage",
+      "missionContent": {
+        "coordinates": [100, 100],
+        "seeding": false,
+        "delivery": false,
+        "scanning3D": true,
+        "scanningUnderground": true,
+        "mapping": true,
+        "detection": true,
+        "recognition": true,
+        "chasing": false
+      },
+      "period": 30
+    },
+    {
+      "evaluationPeriod": "oneTime",
+      "movementType": "pathFollow",
+      "missionContent": {
+        "coordinates": [300, 100],
+        "seeding": false,
+        "delivery": false,
+        "scanning3D": true,
+        "scanningUnderground": false,
+        "mapping": false,
+        "detection": false,
+        "recognition": false,
+        "chasing": true 
+      },
+      "missionTime": 20
+    },
+    {
+      "evaluationPeriod": "oneTime",
+      "movementType": "fullCoverage",
+      "missionContent": {
+        "coordinates": [100, 100],
+        "seeding": false,
+        "delivery": true,
+        "scanning3D": true,
+        "scanningUnderground": false,
+        "mapping": false,
+        "detection": false,
+        "recognition": false,
+        "chasing": false
+      },
+      "missionTime": 20
+    }
+  ]
+}
