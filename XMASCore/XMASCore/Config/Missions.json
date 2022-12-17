@@ -4,8 +4,8 @@
     {
       "evaluationPeriod": "continuous",
       "movementType": "pathFollow",
+      "img": "Fields/mission1.png",
       "missionContent": {
-        "coordinates": [100, 100],
         "seeding": false,
         "delivery": true,
         "scanning3D": true,
@@ -25,8 +25,8 @@
     {
       "evaluationPeriod": "periodic",
       "movementType": "fullCoverage",
+      "img": "Fields/mission2.png",
       "missionContent": {
-        "coordinates": [100, 100],
         "seeding": false,
         "delivery": false,
         "scanning3D": true,
@@ -41,8 +41,8 @@
     {
       "evaluationPeriod": "oneTime",
       "movementType": "pathFollow",
+      "img": "Fields/mission3.png",
       "missionContent": {
-        "coordinates": [300, 100],
         "seeding": false,
         "delivery": false,
         "scanning3D": true,
@@ -57,8 +57,8 @@
     {
       "evaluationPeriod": "oneTime",
       "movementType": "fullCoverage",
+      "img": "Fields/mission4.png",
       "missionContent": {
-        "coordinates": [100, 100],
         "seeding": false,
         "delivery": true,
         "scanning3D": true,

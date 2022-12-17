@@ -1,8 +1,8 @@
 {
   "Base":
   {
-    "x": 1,
-    "y": 2
+    "x": 0,
+    "y": 0
   },
   "ServiceStation":
   {
@@ -11,7 +11,7 @@
   },
   "dataTransferSystem":
   {
-    "range": 3500,
+    "range": 100,
     "throughput": 100,
     "linearScaleFactor": 4.0
   },
@@ -19,9 +19,9 @@
     {
       "totalBatterySize": 200,
       "currentBatterySize": 63,
-      "horizontalSpeed": 45,
-      "takeoffSpeed": 5,
-      "landingSpeed": 3,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
       "weight": 7,
       "diameter": 4,
       "payload": "Lidar"
@@ -29,9 +29,9 @@
     {
       "totalBatterySize": 200,
       "currentBatterySize": 63,
-      "horizontalSpeed": 45,
-      "takeoffSpeed": 5,
-      "landingSpeed": 3,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
       "weight": 7,
       "diameter": 4,
       "payload": "Spraying"
@@ -39,9 +39,209 @@
     {
       "totalBatterySize": 200,
       "currentBatterySize": 63,
-      "horizontalSpeed": 45,
-      "takeoffSpeed": 5,
-      "landingSpeed": 3,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
+      "weight": 7,
+      "diameter": 4,
+      "payload": "HighDefinitionCamera"
+    },
+    {
+      "totalBatterySize": 200,
+      "currentBatterySize": 63,
+      "horizontalSpeed": 1,
+      "takeoffSpeed": 1,
+      "landingSpeed": 1,
       "weight": 7,
       "diameter": 4,
       "payload": "HighDefinitionCamera"

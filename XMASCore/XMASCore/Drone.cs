@@ -15,6 +15,8 @@ public class Drone
     public int Diameter { get; set; }
     public Payload Payload { get; set; }
 
+    public List<Point> Tasks { get; set; }
+
     public int c = 0;
 
     private List<int> Hashes = new List<int>();
@@ -89,8 +91,10 @@ public class Drone
         Diameter  = drone.Diameter;
         Payload = drone.Payload;
         Id = id;
+        Tasks = new List<Point>();
         Direction = new Direction(0, 0);
         DataTransmissionSystem.Registration(this);
+        ;
     }
 
     public Drone(Point position, DroneData droneData,int id)
@@ -106,6 +110,7 @@ public class Drone
         Payload = Payloads[droneData.Payload];
         Speed = HorizontalSpeed;
         Id = id;
+        Tasks = new List<Point>();
         DataTransmissionSystem.Registration(this);
     }
 
@@ -131,20 +136,89 @@ public class Drone
         Position = new Point(Position.X + Direction.DeltaX * Speed, Position.Y + Direction.DeltaY * Speed);
         Direction = new Direction(0, 0);
     }
+
+    public void TaskMove(Swarm swarm)
+    {
+        Direction = CalculatTool.FineDestDirection(this, Tasks[0], swarm);
+        Position = new Point(Position.X + Direction.DeltaX * Speed, Position.Y + Direction.DeltaY * Speed);
+        if (Position.X == Tasks[0].X && Position.Y == Tasks[0].Y)
+        {
+            Tasks.RemoveAt(0);
+        }
+    }
 }
 
 public class Master : Drone
 {
+    private List<Mission> Missions;
     public Master(Drone drone,int id) : base(drone:drone,id:id)
     {
         
     }
 
-    public void moveDude(int dudeId,Point point)
+    public void MoveSlave(int dudeId,Point point)
     {
         foreach (var drones in DataTransmissionSystem.GetDronesInRange(this,DataTransmissionSystem.Range))
         {
             drones.UpdateHandler(new Update(Id,dudeId,Action.move,100,point.X,point.Y));
+        }
+    }
+
+    public void SetMission(MissionHandler missionHandler, Swarm swarm)
+    {
+        //new Thread(() => MoveSlave(swarm.Slaves[1].Id, new Point(50,50))).Start();
+        //new Thread(() => MoveSlave(swarm.Slaves[0].Id, new Point(30,30))).Start();
+        Missions = missionHandler.Missions;
+        AnalizeMission(swarm);
+    }
+
+    public void SetDroneTask(Swarm swarm, int droneCount, Point farePoint, List<Point> mission)
+    {
+        int i = 1;
+        foreach (var drone in swarm.Drones)
+        {
+            if (drone.Tasks.Count == 0)
+            {
+                if (i < droneCount)
+                {
+                    drone.Tasks.Add(CalculatTool.FindPoint(swarm.Base, farePoint, DataTransmissionSystem.Range*i));
+                    i++; 
+                }
+                else
+                {
+                    drone.Tasks = mission;
+                    break;
+                }
+            }
+        }
+    }
+
+    public void AnalizeMission(Swarm swarm)
+    {
+        foreach (var mission in Missions)
+        {
+            Point farePoint = CalculatTool.FarestPoint(mission.Points, swarm.Base);
+            int droneCount =
+                (int)Math.Ceiling(CalculatTool.PointDistance(swarm.Base, farePoint) / DataTransmissionSystem.Range*0.9);
+            SetDroneTask(swarm, droneCount, farePoint, mission.Points);
+        }
+
+        Console.WriteLine();
+    }
+
+    public void StartMission(Swarm swarm)
+    {
+        while (true)
+        {
+            foreach (var drone in swarm.Drones)
+            {
+                if (drone.Tasks.Count != 0)
+                {
+                    drone.TaskMove(swarm);
+                    
+                }
+            } 
+            Thread.Sleep(10);
         }
     }
 }

@@ -19,6 +19,9 @@ public class Mission
     [JsonProperty("movementType")]
     public string MovementType { get; set; }
 
+    [JsonProperty("img")]
+    public string Img { get; set; }
+
     [JsonProperty("missionContent")]
     public MissionContent MissionContent { get; set; }
 
@@ -30,13 +33,12 @@ public class Mission
 
     [JsonProperty("period")]
     public int? Period { get; set; }
+
+    public List<Point> Points { get; set; }
 }
 
 public class MissionContent
 {
-    [JsonProperty("coordinates")]
-    public List<int> Coordinates { get; set; }
-
     [JsonProperty("seeding")]
     public bool Seeding { get; set; }
 
@@ -67,3 +69,5 @@ public class MissionHandler
     [JsonProperty("Missions")]
     public List<Mission> Missions { get; set; }
 }
+
+

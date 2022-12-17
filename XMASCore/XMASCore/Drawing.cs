@@ -6,15 +6,14 @@ using SFML.System;
 public class Drawing
 {
     private RenderWindow Window;
-    
     private Swarm Swarm;
     private List<Sprite> Images;
 
-    public Drawing(Swarm swarm, string[] imageFilePaths, uint width, uint height)
+    public Drawing(Swarm swarm, string[] imageFilePaths, int width, int height)
     {
         Images = new List<Sprite>();
         Swarm = swarm;
-        Window = new RenderWindow(new VideoMode(width, height), "Title");
+        Window = new RenderWindow(new VideoMode((uint)width, (uint)height), "Title");
         Window.SetVerticalSyncEnabled(true);
         
         foreach (var path in imageFilePaths)
@@ -26,7 +25,7 @@ public class Drawing
         }
     }
 
-    public static void Start(Swarm swarm, string[] imageFilePaths, uint width, uint height)
+    public static void Start(Swarm swarm, string[] imageFilePaths, int width, int height)
     {
         Drawing drawing = new(swarm, imageFilePaths, width, height);
         drawing.Display();

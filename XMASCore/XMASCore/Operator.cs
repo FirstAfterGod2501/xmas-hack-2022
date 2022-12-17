@@ -34,9 +34,9 @@ public class Operator
         }
     }
     
-    public async void suka()
+    public void SendMission(MissionHandler missionHandler)
     {
-        new Thread(() => Swarm.Master.moveDude(Swarm.Slaves[1].Id, new Point(2,2))).Start();
-        new Thread(() => Swarm.Master.moveDude(Swarm.Slaves[0].Id, new Point(4,2))).Start();
+       Swarm.Master.SetMission(missionHandler, Swarm);
+       Swarm.Master.StartMission(Swarm);
     }
 }
