@@ -62,7 +62,6 @@ public class Drone
                         Console.WriteLine("id: " + update.FromId);
                         Hashes.Add(update.HashCode.GetHashCode());
                     }
-
                     break;
             }
         }
@@ -237,7 +236,6 @@ public class Master : Drone
                 if (drone.Tasks.Count != 0)
                 {
                     drone.TaskMove(swarm);
-                    
                 }
             } 
             Thread.Sleep(10);

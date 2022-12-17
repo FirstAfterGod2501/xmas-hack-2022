@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-      <Exec Command="copy $(ProjectDir)Config\* $(ProjectDir)$(OutDir)&#xA;copy $(ProjectDir)Fields\* $(ProjectDir)$(OutDir)" />
+      <Exec Command="cp $(ProjectDir)Config\* $(ProjectDir)$(OutDir)&#xA;cp $(ProjectDir)Fields\* $(ProjectDir)$(OutDir)" />
     </Target>
 
 </Project>

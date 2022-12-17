@@ -21,8 +21,10 @@ public class DataTransmissionSystem
     {
         Drones.Add(drone);
     }
-    
-    public static void UpdateInformationAboutDrone(Drone drone)
+
+    bool chechDronesInRange(List<Drone> drones,int radius, Point point) =>  drones.Any(x => CalculatTool.PointDistance(x.Position, point) < radius);
+
+        public static void UpdateInformationAboutDrone(Drone drone)
     {
         var droneToDelete = Drones.FirstOrDefault(x => x.Id == drone.Id);
         if (droneToDelete != null)
