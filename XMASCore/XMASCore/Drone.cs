@@ -208,10 +208,13 @@ public class Master : Drone
 
     public void StartMission(Swarm swarm)
     {
-        while (true)
+        int taskCount = 1;
+        while (taskCount>0)
         {
+            taskCount = 0;
             foreach (var drone in swarm.Drones)
             {
+                taskCount += drone.Tasks.Count;
                 if (drone.Tasks.Count != 0)
                 {
                     drone.TaskMove(swarm);
@@ -220,5 +223,25 @@ public class Master : Drone
             } 
             Thread.Sleep(10);
         }
+        foreach (var drone in swarm.Drones)
+        {
+            drone.Tasks.Add(swarm.Base);
+        }
+        taskCount = 1;
+        while (taskCount>0)
+        {
+            taskCount = 0;
+            foreach (var drone in swarm.Drones)
+            {
+                taskCount += drone.Tasks.Count;
+                if (drone.Tasks.Count != 0)
+                {
+                    drone.TaskMove(swarm);
+                    
+                }
+            } 
+            Thread.Sleep(10);
+        }
+        
     }
 }
