@@ -1,6 +1,4 @@
-﻿using SFML.Graphics;
-using SFML.System;
-using SixLabors.ImageSharp;
+﻿using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using SixLabors.ImageSharp.PixelFormats;
 using Image = SixLabors.ImageSharp.Image;
@@ -12,8 +10,9 @@ public class MissionAnalyze
     public static List<Point> FindPoints(string file, int width, int height)
     {
         var result = new List<Point>();
-        var img = new Image<Rgba32>(300, 300);
+        var img = new Image<Rgba32>(width, height);
         img = Image.Load<Rgba32>(file);
+        img.Mutate(x => x.Resize(width, height));
         
         for (int i = 0; i < img.Width; i+=4)
         {
