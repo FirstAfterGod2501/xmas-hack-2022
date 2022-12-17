@@ -14,15 +14,24 @@ public class MissionAnalyze
         img = Image.Load<Rgba32>(file);
         img.Mutate(x => x.Resize(width, height));
         
-        for (int i = 0; i < img.Width; i+=4)
+        for (int i = 0; i < img.Width-2; i+=2*2)
         {
-            for (int j = 0; j < img.Height; j+=4)
+            for (int j = 0; j < img.Height; j+=2)
             {
                 var pixel = img[i, j];
 
                 if (pixel.A>240)
                 {
                     result.Add(new Point(i, j));
+                }
+            }
+            for (int j = img.Height-1; j > 0; j-=2)
+            {
+                var pixel = img[i+2, j];
+
+                if (pixel.A>240)
+                {
+                    result.Add(new Point(i+2, j));
                 }
             }
         }
