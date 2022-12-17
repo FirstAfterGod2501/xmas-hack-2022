@@ -1,8 +1,10 @@
-﻿
-using System.Drawing;
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using SFML.System;
-using Color = System.Drawing.Color;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.ImageSharp.PixelFormats;
+using Image = SixLabors.ImageSharp.Image;
+
 namespace XMASCore;
 
 public class MissionAnalyze
@@ -10,14 +12,14 @@ public class MissionAnalyze
     public static List<Point> FindPoints(string file, int width, int height)
     {
         var result = new List<Point>();
-        Bitmap img = new Bitmap(file);
-        img = new Bitmap(img,new Size(width,height));
+        var img = new Image<Rgba32>(300, 300);
+        img = Image.Load<Rgba32>(file);
         
         for (int i = 0; i < img.Width; i+=4)
         {
             for (int j = 0; j < img.Height; j+=4)
             {
-                Color pixel = img.GetPixel(i, j);
+                var pixel = img[i, j];
 
                 if (pixel.A>240)
                 {

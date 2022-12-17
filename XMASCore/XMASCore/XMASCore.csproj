@@ -11,7 +11,7 @@
     <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
       <PackageReference Include="SFML.Net" Version="2.5.0" />
-      <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+      <PackageReference Include="SixLabors.ImageSharp" Version="2.1.3" />
 	<Content Include="Config\*">
     		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   	</Content>
